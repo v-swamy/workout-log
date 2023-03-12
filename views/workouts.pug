@@ -1,0 +1,24 @@
+extends layout
+
+block main 
+  section.section
+    a(href="/workouts/new")
+      p.is-size-5.pb-6.has-text-centered New Workout
+
+    .container
+      .list 
+        each workout in workouts
+          .list-item.box
+            .list-item-content 
+              .list-item-title= workout.date
+              .list-item-description #{workout.exercise}
+              .list-item-description #{workout.weight} lbs
+              .list-item-description #{workout.sets} sets x #{workout.reps} reps
+            .list-item-controls 
+              .buttons.is-right
+                a.button.is-link(href=`/workouts/${workout.id}/edit`) Edit
+                form(action=`/workouts/${workout.id}/destroy` method="post")
+                  button.button.is-danger Delete
+                
+                
+
